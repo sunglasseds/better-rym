@@ -1,0 +1,41 @@
+{
+	"name": "better rym",
+	"version": "0.0",
+	"description": "rym theming",
+	"background": {
+		"scripts": ["./script/nocache.js"],
+		"persistent": true
+	},
+	"content_scripts": [
+		{
+			"matches": ["*://rateyourmusic.com/*"],
+			"css": ["./dep/bootstrap.css", "./style/hide.css"],
+			"js": ["./dep/jquery.js", "./dep/popper.js", "./dep/bootstrap.js"],
+			"run_at": "document_start",
+			"all_frames": true
+		},
+
+		{
+			"matches": ["*://rateyourmusic.com/"],
+			"js": ["./script/home.js"],
+			"run_at": "document_end",
+			"all_frames": true
+		},
+
+		{
+			"matches": ["*://rateyourmusic.com/*"],
+			"css": ["./style/base.css"],
+			"js": ["./script/base.js"],
+			"run_at": "document_end",
+			"all_frames": true
+		}
+	],
+	"permissions": [
+		"webRequest",
+		"*://rateyourmusic.com/*"
+	],
+	"icons": {
+		"128": "./img/128.png"
+	},
+	"manifest_version": 2
+}
