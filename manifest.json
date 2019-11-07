@@ -10,7 +10,7 @@
 		{
 			"matches": ["*://rateyourmusic.com/*"],
 			"css": ["./dep/bootstrap.css", "./style/hide.css"],
-			"js": ["./dep/jquery.js", "./dep/popper.js", "./dep/bootstrap.js"],
+			"js": ["./dep/jquery.js", "./dep/popper.js", "./dep/bootstrap.js", "./dep/cookie.js"],
 			"run_at": "document_start",
 			"all_frames": true
 		},

@@ -1,6 +1,7 @@
 // required bootstrap shit
 var username = $("#navlist > li:nth-child(5) > a");
 var logged_in = username.attr("href").includes("/~");
+var submenu = $("#wrapper > div.submenu_ext");
 var bx = $("#bx").attr("value");
 
 $("head").html("");
@@ -25,7 +26,13 @@ function make_navbar(links) {
 	if (logged_in) {
 		items.append(
 			$($.parseHTML(`<li class="nav-item"><a class="nav-link">...</a></li>`)).click(() => {
-				// toggle extra bar
+				if (!Cookies.get("submenu_ext") || Cookies.get("submenu_ext") == "nah") {
+					Cookies.set("submenu_ext", "yea", {expires: Number.MAX_SAFE_INTEGER});
+					$(".submenu_ext").removeClass("closed");
+				} else if (Cookies.get("submenu_ext") == "yea") {
+					Cookies.set("submenu_ext", "nah", {expires: Number.MAX_SAFE_INTEGER});
+					$(".submenu_ext").addClass("closed");
+				}
 			})
 		);
 	}
@@ -40,13 +47,21 @@ $("body").append(
 			<input type="text" placeholder="search" id="srch-term">
 			<div class="dropdown">
 				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdown-menu-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">artists</button>
-				<div class="dropdown-menu" aria-labelledby="dropdown-menu-button" id="srch-type-menu"></div>
+				<ul class="dropdown-menu w-100" aria-labelledby="dropdown-menu-button" id="srch-type-menu"></ul>
 			</div>
 			<input type="hidden" id="srch-type" value="a">
 		</div>
 		<button class="btn btn-outline-secondary" id="srch-btn"><i class="fa fa-search"></i></button>
 	</nav>`)
 );
+
+if (logged_in) {
+	submenu.addClass("sticky-top").css("float", "right");
+	if (Cookies.get("submenu_ext") == "nah") {
+		submenu.addClass("closed");
+	}
+	$("body").append(submenu);
+}
 
 $("div#navbar-main").append(make_navbar({
 	"charts": "https://rateyourmusic.com/charts/top/album/all-time",
@@ -80,15 +95,56 @@ let dropdown_items = {
 
 Object.keys(dropdown_items).map((key, ind) => {
 	if (dropdown_items[key]) {
-		$("body nav.navbar div.dropdown div.dropdown-menu").append($($.parseHTML(`<a class="dropdown-item search-option" style="max-width: 9.5rem;">${key}</a>`)).click(() => {
+		$("body nav.navbar div.dropdown ul.dropdown-menu").append($($.parseHTML(`<li><a class="dropdown-item search-option">${key}</a></li>`)).children("a").click(() => {
 			$("button#dropdown-menu-button").html(key);
 			$("input#srch-type").val(dropdown_items[key]);
 		}));
 	} else {
-		$("body nav.navbar div.dropdown div.dropdown-menu").append($($.parseHTML(`<a class="dropdown-item search-header" style="max-width: 9.5rem;">${key}</a>`)));
+		$("body nav.navbar div.dropdown ul.dropdown-menu").append($($.parseHTML(`<li><a class="dropdown-item search-header">${key}</a></li>`)));
 	}
 });
 
 $("body nav.navbar button#srch-btn").click(() => {
-	window.location.href = `https://rateyourmusic.com/search?bx=${bx}&searchtype=${$(this).parent().children("input#srch-type").val()}&searchterm=${$(this).parent().children("input#srch-term").val()}`;
+	window.location.href = `https://rateyourmusic.com/search?bx=${bx}&searchtype=${$("input#srch-type").val()}&searchterm=${$("input#srch-term").val()}`;
 });
+
+$("body").append(
+	$.parseHTML(`
+		<div class="jumbotron" id="frontcontentheader">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6" style="text-align: center;">
+						<img style="display: inline-block;" src="https://i.imgur.com/dvHdS2I.png">
+					</div>
+					<div class="col-md-6" id="welcome">
+						<h1>welcome to rym</h1>
+						<span>yes, this site was designed by monkeys. no, godspeed you! black emperor is not good</span>
+						<br><br>
+						<button type="button" class="btn btn-light"><a href="https://rateyourmusic.com/account/login">create an account</a></button>
+					</div>
+				</div>
+			</div>
+		</div>
+	`)
+	// $.parseHTML(`
+	// 	<div id="frontcontentheader">
+	// 		<div id="headleft">
+	// 			<img src="https://i.imgur.com/dvHdS2I.png">
+	// 		</div>
+	// 		<div id="headright">
+	// 			<div id="welcome">
+	// 				<h1>welcome to rym</h1>
+	// 				<br>
+	// 				<span>yes, this site was designed by monkeys. no, godspeed you! black emperor is not good</span>
+	// 				<div>
+	// 					<br><button type="button" class="btn btn-light"><a href="https://rateyourmusic.com/account/login" id="loginthing">create an account</a></button>
+	// 				</div>
+	// 			</div>
+	// 		</div>
+	// 	</div>
+	// `)
+	// $("<img/>", {
+	// 	src: "https://i.imgur.com/9c9Fzcf.png",
+	// 	id: "header-image"
+	// })
+);

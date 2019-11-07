@@ -35,7 +35,7 @@ body {
 	background-color: #ddd;
 }
 
-div#srch-type-menu, button#dropdown-menu-button {
+ul#srch-type-menu, button#dropdown-menu-button {
 	font-size: 0.6875rem;
 	color: rgba(0, 0, 0, 0.5);
 	background-color: #eee;
@@ -55,11 +55,10 @@ button#dropdown-menu-button:focus {
 	box-shadow: none;
 }
 
-div#srch-type-menu {
+ul#srch-type-menu {
 	background-color: #fff;
 	padding-top: 0.1875rem;
 	padding-bottom: 0.375rem;
-	width: max-content;
 	transform: translateY(-2px);
 }
 
@@ -83,11 +82,65 @@ button#srch-btn {
 	border-radius: 0px;
 	border-top-right-radius: 0.25rem;
 	border-bottom-right-radius: 0.25rem;
-	transform: translateX(-1px);
+	transform: translateX(-2rem);
 }
 
 div#search-bar {
 	border: 1px solid #a9a9a9;
 	border-right-color: #c0c0c0;
-	border-radius: 0.25rem 0 0.25rem 0;
+	border-radius: 0.25rem 0 0 0.25rem;
+	transform: translateX(-2rem);
+}
+
+div.submenu_ext {
+	overflow-y: hidden;
+	max-height: 1.5rem;
+	transition-property: all;
+	transition-duration: .04s; /* what a bitch */
+	transition-timing-function: cubic-bezier(0, 1, 1, 1);
+
+	background-color: #e9ecef;
+	color: #89838c;
+	width: 100%;
+}
+
+div.submenu {
+	float: right;
+	margin-right: 1rem;
+	padding: 0.1875rem;
+	font-size: 12px;
+}
+
+div.submenu > a {
+	text-decoration: none;
+	color: inherit;
+	padding: 0.125rem;
+}
+
+div.submenu_ext.closed {
+	max-height: 0;
+}
+
+div#frontcontentheader a {
+	text-decoration: none;
+	color: #212529;
+}
+
+div#frontcontentheader div.container div.row {
+	text-align: center;
+}
+
+div#frontcontentheader div.container div.row div.col-md-6 {
+	display: inline-block;
+	text-align: left;
+}
+
+div#frontcontentheader img {
+	display: inline-block;
+	height: 125%;
+	width: auto;
+}
+
+div#welcome {
+	margin-top: 2rem;
 }
