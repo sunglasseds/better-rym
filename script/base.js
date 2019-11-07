@@ -1,12 +1,14 @@
-// required bootstrap shit
+console.log("ok");
 var username = $("#navlist > li:nth-child(5) > a");
 var logged_in = username.attr("href").includes("/~");
 var submenu = $("#wrapper > div.submenu_ext");
 var bx = $("#bx").attr("value");
+var header_messages = [];
 
 $("head").html("");
 $("body").html("");
 
+// required bootstrap shit
 $("body").css("cssText", "display: inherit!important;");
 $("head").append($("<link/>", {
 	href: "https://use.fontawesome.com/releases/v5.0.8/css/all.css",
@@ -40,19 +42,21 @@ function make_navbar(links) {
 }
 
 $("body").append(
-	$.parseHTML(`<nav class="navbar navbar-expand-md sticky-top navbar-light bg-light">
-		<a class="navbar-brand" href="https://rateyourmusic.com/"><img src="https://8c30d0904e8b39d0d903-000092c797254b10c6f28a1f9486b488.ssl.cf1.rackcdn.com/sonemic-512.png" height="48px"></a>
-		<div id="navbar-main" class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2"></div>
-		<div class="navbar-collapse" id="search-bar">
-			<input type="text" placeholder="search" id="srch-term">
-			<div class="dropdown">
-				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdown-menu-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">artists</button>
-				<ul class="dropdown-menu w-100" aria-labelledby="dropdown-menu-button" id="srch-type-menu"></ul>
+	$.parseHTML(`<div class="sticky-top">
+		<nav class="navbar navbar-expand-md navbar-light bg-light">
+			<a class="navbar-brand" href="https://rateyourmusic.com/"><img src="https://8c30d0904e8b39d0d903-000092c797254b10c6f28a1f9486b488.ssl.cf1.rackcdn.com/sonemic-512.png" height="48px"></a>
+			<div id="navbar-main" class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2"></div>
+			<div class="navbar-collapse" id="search-bar">
+				<input type="text" placeholder="search" id="srch-term">
+				<div class="dropdown">
+					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdown-menu-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">artists</button>
+					<ul class="dropdown-menu w-100" aria-labelledby="dropdown-menu-button" id="srch-type-menu"></ul>
+				</div>
+				<input type="hidden" id="srch-type" value="a">
 			</div>
-			<input type="hidden" id="srch-type" value="a">
-		</div>
-		<button class="btn btn-outline-secondary" id="srch-btn"><i class="fa fa-search"></i></button>
-	</nav>`)
+			<button class="btn btn-outline-secondary" id="srch-btn"><i class="fa fa-search"></i></button>
+		</nav>
+	</div>`)
 );
 
 if (logged_in) {
@@ -60,7 +64,7 @@ if (logged_in) {
 	if (Cookies.get("submenu_ext") == "nah") {
 		submenu.addClass("closed");
 	}
-	$("body").append(submenu);
+	$("body div.sticky-top").append(submenu);
 }
 
 $("div#navbar-main").append(make_navbar({
@@ -107,44 +111,3 @@ Object.keys(dropdown_items).map((key, ind) => {
 $("body nav.navbar button#srch-btn").click(() => {
 	window.location.href = `https://rateyourmusic.com/search?bx=${bx}&searchtype=${$("input#srch-type").val()}&searchterm=${$("input#srch-term").val()}`;
 });
-
-$("body").append(
-	$.parseHTML(`
-		<div class="jumbotron" id="frontcontentheader">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6" style="text-align: center;">
-						<img style="display: inline-block;" src="https://i.imgur.com/dvHdS2I.png">
-					</div>
-					<div class="col-md-6" id="welcome">
-						<h1>welcome to rym</h1>
-						<span>yes, this site was designed by monkeys. no, godspeed you! black emperor is not good</span>
-						<br><br>
-						<button type="button" class="btn btn-light"><a href="https://rateyourmusic.com/account/login">create an account</a></button>
-					</div>
-				</div>
-			</div>
-		</div>
-	`)
-	// $.parseHTML(`
-	// 	<div id="frontcontentheader">
-	// 		<div id="headleft">
-	// 			<img src="https://i.imgur.com/dvHdS2I.png">
-	// 		</div>
-	// 		<div id="headright">
-	// 			<div id="welcome">
-	// 				<h1>welcome to rym</h1>
-	// 				<br>
-	// 				<span>yes, this site was designed by monkeys. no, godspeed you! black emperor is not good</span>
-	// 				<div>
-	// 					<br><button type="button" class="btn btn-light"><a href="https://rateyourmusic.com/account/login" id="loginthing">create an account</a></button>
-	// 				</div>
-	// 			</div>
-	// 		</div>
-	// 	</div>
-	// `)
-	// $("<img/>", {
-	// 	src: "https://i.imgur.com/9c9Fzcf.png",
-	// 	id: "header-image"
-	// })
-);

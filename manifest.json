@@ -16,16 +16,18 @@
 		},
 
 		{
-			"matches": ["*://rateyourmusic.com/"],
-			"js": ["./script/home.js"],
+			"matches": ["*://rateyourmusic.com/*"],
+			"css": ["./style/base.css"],
+			"js": ["./script/base.js"],
 			"run_at": "document_end",
 			"all_frames": true
 		},
 
+
 		{
-			"matches": ["*://rateyourmusic.com/*"],
-			"css": ["./style/base.css"],
-			"js": ["./script/base.js"],
+			"matches": ["*://rateyourmusic.com/"],
+			"css": ["./style/home.css"],
+			"js": ["./script/home.js"],
 			"run_at": "document_end",
 			"all_frames": true
 		}

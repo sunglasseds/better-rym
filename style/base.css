@@ -2,6 +2,10 @@
 	font-family: Segoe UI, Verdana, Arial, sans-serif;
 }
 
+html, body {
+    height:100%;
+}
+
 body {
 	background-color: #fff;
 }
@@ -102,6 +106,7 @@ div.submenu_ext {
 	background-color: #e9ecef;
 	color: #89838c;
 	width: 100%;
+	border-bottom: 1px solid #cacdd0;
 }
 
 div.submenu {
@@ -119,28 +124,4 @@ div.submenu > a {
 
 div.submenu_ext.closed {
 	max-height: 0;
-}
-
-div#frontcontentheader a {
-	text-decoration: none;
-	color: #212529;
-}
-
-div#frontcontentheader div.container div.row {
-	text-align: center;
-}
-
-div#frontcontentheader div.container div.row div.col-md-6 {
-	display: inline-block;
-	text-align: left;
-}
-
-div#frontcontentheader img {
-	display: inline-block;
-	height: 125%;
-	width: auto;
-}
-
-div#welcome {
-	margin-top: 2rem;
 }
