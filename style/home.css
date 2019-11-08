@@ -38,16 +38,9 @@ div#welcome h1 {
 	font-size: 3.25rem;
 }
 
-button#showfeatreview, button#showfrenreview, button#shownewreleases, button#showrecommended {
-
-}
-
-button#showfeatreview.active, button#showfrenreview.active, button#shownewreleases.active, button#showrecommended.active {
-
-}
-
 div.frontcol {
 	display: none;
+	margin-bottom: 10rem;
 }
 
 div.frontcol.active {
@@ -67,4 +60,22 @@ button.colbtn {
 	width: 50%;
 	border-radius: 0;
 	display: table-cell;
+}
+
+div.frontcol {
+	background-color: #f0f1f2;
+}
+
+div.frontreview {
+	display: table;
+}
+
+div.frontreview div.jumbotron {
+	min-width: 50%;
+	display: table-cell;
+}
+
+div.frontreviewbody {
+	padding: 1.5rem;
+	font-size: 14px;
 }
