@@ -2,6 +2,10 @@
 	"name": "better rym",
 	"version": "0.0",
 	"description": "rym theming",
+	"background": {
+		"scripts": ["./script/nocache.js"],
+		"persistent": true
+	},
 	"content_scripts": [
 		{
 			"matches": ["*://rateyourmusic.com/*"],
