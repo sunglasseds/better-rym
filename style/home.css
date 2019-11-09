@@ -66,16 +66,57 @@ div.frontcol {
 	background-color: #f0f1f2;
 }
 
-div.frontreview {
-	display: table;
+div.frontreviewhead {
+	background-color: #e9ecef;
+	padding: 1.5rem;
 }
 
-div.frontreview div.jumbotron {
-	min-width: 50%;
-	display: table-cell;
+div.frontreviewhead a {
+	color: #01a;
+}
+
+div.frontreview {
+	display: table;
 }
 
 div.frontreviewbody {
 	padding: 1.5rem;
 	font-size: 14px;
+}
+
+div.reviewheadart {
+	text-align: right;
+}
+
+div.reviewheadart img {
+	display: inline-block;
+}
+
+div.bottom-aligner {
+	display: inline-block;
+	height: 30%;
+	vertical-align: bottom;
+	width: 0px;
+}
+
+div.newrelease > tr {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+div.newrelease {
+	font-size: 0.75rem;
+}
+
+.delayloadimg {
+	padding: .5rem;
+}
+
+div#newreleases a {
+	color: #01a;
+}
+
+div#newreleases div.sep {
+	height: 0.5rem;
+	background-color: #fff;
 }

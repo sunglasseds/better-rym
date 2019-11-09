@@ -1,4 +1,56 @@
+// // album art
+// elem.find("div.or_card_frame a img").attr("href");
+// // album link
+// elem.find("span.card_link em a.card_link_bg").attr("href");
+// // album name
+// elem.find("span.card_link em a.card_link_bg").text();
+// // artist link
+// elem.find("span.card_link a").attr("href");
+// // artist name
+// elem.find("span.card_link a").text();
+// // release year
+// elem.find("span.card_link span.card_small").text();
+//
+// // review
+// elem.find("div").first().text();
+// // rating image url
+// elem.find("table.mbgen td img").attr("src");
+// // reviewer
+// elem.find("table.mbgen td span a").text();
+
+var nolinks = elem => elem.clone().children().remove().end().text();
+var front_review = (album_name, album_link, artist_name, artist_link, album_art, release_year, genres, rating_img, reviewer, reviewer_link, body) => $.parseHTML(`
+	<div class="frontreviewhead">
+		<div class="row">
+			<div class="col-md-6 reviewheadart">
+				<a href="${album_link}">
+					<img src="${album_art}">
+				</a>
+			</div>
+			<div class="col-md-6 frontreviewinfo">
+				<div class="bottom-aligner"></div>
+				<a style="font-weight: 700;" href="${album_link}">
+					${album_name} <em style="font-size: 0.625rem;">${release_year}</em>
+				</a><br>
+				<a href="${artist_link}">
+					${artist_name}
+				</a><br><br>
+				<a style="font-weight: 700; text-decoration: underline;" href="${reviewer_link}">
+					${reviewer}
+				</a><br>
+				<img src="${rating_img}">
+			</div>
+		</div>
+	</div>
+	<div class="frontreviewbody">
+		${body}
+	</div>
+	<div style="background-color: #fff; height: 2rem;"></div>
+`);
+
 let reviews = $("#content > div.row > div:nth-child(1) > div.bubble_content").html().split(`<div class="clear"></div> <br><br>`);
+let newreleases = $(`#content table.mbgen tr[id^="newrelease"]`).first().parent().children();
+console.log(newreleases);
 var username = $("#navlist > li:nth-child(5) > a");
 var logged_in = username.attr("href").includes("/~");
 var submenu = $("#wrapper > div.submenu_ext");
@@ -157,76 +209,91 @@ $("body").append(
 	</div>
 `);
 
-$("button#showfeatreview").click(() => {
-	$("button#showfeatreview").addClass("active");
-	$("button#showfrenreview").removeClass("active");
-	$("div#featreviews").addClass("active");
-	$("div#frenreviews").removeClass("active");
-});
-$("button#showfrenreview").click(() => {
-	$("button#showfrenreview").addClass("active");
-	$("button#showfeatreview").removeClass("active");
-	$("div#frenreviews").addClass("active");
-	$("div#featreviews").removeClass("active");
-});
-
-$("button#shownewreleases").click(() => {
-	$("button#shownewreleases").addClass("active");
-	$("#showrecommended").removeClass("active");
-	$("div#newreleases").addClass("active");
-	$("div#recommended").removeClass("active");
-});
-$("button#showrecommended").click(() => {
-	$("button#showrecommended").addClass("active");
-	$("#shownewreleases").removeClass("active");
-	$("div#recommended").addClass("active");
-	$("div#newreleases").removeClass("active");
-});
+if (logged_in) {
+	$("button#showfrenreview").click(() => {
+		$("button#showfeatreview").removeClass("active");
+		$("button#showfrenreview").addClass("active");
+		$("div#featreviews").removeClass("active");
+		$("div#frenreviews").addClass("active");
+	});
+	$("button#showfeatreview").click(() => {
+		$("button#showfeatreview").addClass("active");
+		$("button#showfrenreview").removeClass("active");
+		$("div#featreviews").addClass("active");
+		$("div#frenreviews").removeClass("active");
+	});
+	$("button#shownewreleases").click(() => {
+		$("button#shownewreleases").addClass("active");
+		$("#showrecommended").removeClass("active");
+		$("div#newreleases").addClass("active");
+		$("div#recommended").removeClass("active");
+	});
+	$("button#showrecommended").click(() => {
+		$("button#showrecommended").addClass("active");
+		$("#shownewreleases").removeClass("active");
+		$("div#recommended").addClass("active");
+		$("div#newreleases").removeClass("active");
+	});
+}
 
 $.each(reviews, (ind, e) => {
 	let elem = $("<div/>").append($.parseHTML(e));
 	let review = $("<div/>", {
 		class: "frontreview"
 	});
-	let review_id = elem.find(`div[id^="review"]`).attr("id").split("review")[1];
-
-	review.append($.parseHTML(`
-		<div class="frontreviewhead">
-			<div class="jumbotron col-md-6">
-				<a href="${elem.find("span.card_link em a.card_link_bg").attr("href")}">
-					<img src="${elem.find("div.or_card_frame a img").attr("src")}">
-				</a>
-			</div>
-			<div class="jumbotron col-md-6" id="frontreview_${review_id}">
-				<a href="${elem.find("span.card_link em a.card_link_bg")}">${elem.find("span.card_link em a.card_link_bg").text()} ${elem.find("span.card_link span.card_small").text()}</a><br>
-				<a href="${elem.find("span.card_link a:eq(1)").attr("href")}">${elem.find("span.card_link a:eq(1)").text()}</a><br>
-				<a href="${elem.find("table.mbgen td span a").attr("href")}">${elem.find("table.mbgen td span a").text()}</a><br>
-				<img src="${elem.find("table.mbgen td img").attr("src")}">
-			</div>
-		</div>
-		<div class="frontreviewbody">
-			${elem.find("div[id^=review]").first().html()}
-		</div>
-		<div style="background-color: #fff; height: 2rem;"></div>
-	`));
-	// // album art
-	// elem.find("div.or_card_frame a img").attr("href");
-	// // album link
-	// elem.find("span.card_link em a.card_link_bg").attr("href");
-	// // album name
-	// elem.find("span.card_link em a.card_link_bg").text();
-	// // artist link
-	// elem.find("span.card_link a").attr("href");
-	// // artist name
-	// elem.find("span.card_link a").text();
-	// // release year
-	// elem.find("span.card_link span.card_small").text();
-	//
-	// // review
-	// elem.find("div").first().text();
-	// // rating image url
-	// elem.find("table.mbgen td img").attr("src");
-	// // reviewer
-	// elem.find("table.mbgen td span a").text();
+	review.append(front_review(
+		elem.find("span.card_link em a.card_link_bg").text(),
+		elem.find("span.card_link em a.card_link_bg").attr("href"),
+		elem.find("span.card_link a:eq(1)").text(),
+		elem.find("span.card_link a:eq(1)").attr("href"),
+		elem.find("div.or_card_frame a img").attr("src"),
+		elem.find("span.card_link span.card_small").text(),
+		"",
+		elem.find("table.mbgen td img").attr("src"),
+		elem.find("table.mbgen td span a:eq(0)").text(),
+		elem.find("table.mbgen td span a:eq(0)").attr("href"),
+		elem.find("div[id^=review]").first().html()
+	));
 	$("div#featreviews").append(review);
 });
+
+newreleases.each((ind, elem) => {
+	$("div#newreleases").append($("<div/>", {class: "newrelease"}).html(elem));
+	$("div#newreleases").append($("<div/>", {class: "sep"}));
+});
+
+if (logged_in) {
+	let fr = [];
+	$("div#reviews div.colbody").append("<div/>", {id: "frenreviews"});
+	let url = `https://rateyourmusic.com/~${$("#navbar-main > ul > li:nth-child(4) > a").text()}`
+	console.log(url);
+	fetch(url).then(response => {
+		if (response.status !== 200) {
+			console.log(`oh god oh fuck: ${response.status}`);
+		}
+		return response.text();
+	}).then(data => {
+		let d = $("<div/>").append($.parseHTML(data));
+		fr = d.find("#allNotifications td:contains(review)");
+		console.log(fr);
+	}).catch(err => {
+		console.log(err);
+	});
+
+	$.each(fr, (ind, elem) => {
+		let r = "";
+		if (nolinks(elem).includes("most recently")) {
+			let reviewer = elem.find(`a.user`).text();
+			let album = elem.find(`a:contains(${elem.text().split("most recently for ")[1]}`).attr("href");
+			fetch(album).then(response => {
+				if (response.status !== 200) {
+					console.log(`oh god oh fuck: ${response.status}`);
+				}
+				return response.text();
+			}).then(data => {
+				let d = $("<div/>").append($.parseHTML(data));
+				r = d.find(`div.review_header.friend:contains(${reviewer})`).parent().children("div.review_body").first().text();
+			});
+		}
+	});
+}
