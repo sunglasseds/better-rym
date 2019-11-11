@@ -32,8 +32,7 @@
 	],
 	"permissions": [
 		"webRequest",
-		"*://rateyourmusic.com/*",
-		"chrome.windows"
+		"*://rateyourmusic.com/*"
 	],
 	"icons": {
 		"128": "./img/128.png"

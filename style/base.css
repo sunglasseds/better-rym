@@ -129,3 +129,27 @@ a.headerbutton {
 a.headerbutton img {
 	display: none;
 }
+
+a#forgot-password {
+	padding: 0.25rem 0.75rem;
+	font-size: 0.75rem;
+	width: 100%;
+	font-weight: 700;
+}
+
+div.form-check label {
+	font-size: 0.875rem;
+}
+
+div.input-group-prepend span {
+	width: 38px;
+	text-align: center;
+}
+
+i.fa-user {
+	transform: translateX(-0.125rem);
+}
+
+i.fa-lock {
+	transform: translateX(-0.0625rem);
+}

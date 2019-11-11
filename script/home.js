@@ -8,7 +8,7 @@ var front_review = (album_name, album_link, artist_name, artist_link, album_art,
 					<img src="${album_art}">
 				</a>
 			</div>
-			<div class="col-md-6 frontreviewinfo"><div class="bottom-aligner" style="width: 0;"></div><a style="font-weight: 700;" href="${album_link}">${album_name} <em style="font-size: 0.625rem;">${release_year}</em></a><br><a href="${artist_link}">${artist_name}</a><br>${genres}<br><a style="font-weight: 700; text-decoration: underline;" href="${reviewer_link}">${reviewer}</a><br><img src="${rating_img}"></div>
+			<div class="col-md-6 frontreviewinfo"><div class="bottom-aligner" style="width: 0;"></div><a style="font-weight: 700;" href="${album_link}">${album_name}</a> <em style="font-size: 0.625rem;">${release_year}</em><br><a href="${artist_link}">${artist_name}</a><br>${genres}<br><a style="font-weight: 700; text-decoration: underline;" href="${reviewer_link}">${reviewer}</a><br><img src="${rating_img}"></div>
 		</div>
 	</div>
 	<div class="frontreviewbody">
@@ -81,7 +81,7 @@ if ($("html").hasClass("captcha")) {
 		$.parseHTML(`<div class="sticky-top">
 			<nav class="navbar navbar-expand-md navbar-light bg-light">
 				<a class="navbar-brand" href="https://rateyourmusic.com/"><img src="https://8c30d0904e8b39d0d903-000092c797254b10c6f28a1f9486b488.ssl.cf1.rackcdn.com/sonemic-512.png" height="48px"></a>
-				<div id="navbar-main" class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2"></div>
+				<div id="navbar-main" class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2"><ul class="navbar-nav"></ul></div>
 				<div class="navbar-collapse" id="icon-bar" style="transform: translateX(-2.25rem);"></div>
 				<div class="navbar-collapse" id="search-bar">
 					<input type="text" placeholder="search" id="srch-term">
@@ -94,7 +94,116 @@ if ($("html").hasClass("captcha")) {
 				<button class="btn btn-outline-secondary" id="srch-btn"><i class="fa fa-search"></i></button>
 			</nav>
 		</div>`)
+	).append(
+		$.parseHTML(`
+			<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="login-label" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header text-center">
+							<h2 class="modal-title w-100 font-weight-bold">log in</h4>
+						</div>
+						<div class="modal-body">
+							<form>
+								<div class="form-group">
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text"><i class="fa fa-user"></i></span>
+										</div>
+										<input type="text" class="form-control" id="login-username" placeholder="username" name="username">
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text"><i class="fa fa-lock"></i></span>
+										</div>
+										<input type="password" class="form-control" id="login-password" placeholder="password" name="password">
+									</div>
+								</div>
+								<div class="form-group">
+									<a href="https://rateyourmusic.com/account/forgot_password" id="forgot-password" class="btn btn-light">forgot your password?</a>
+								</div>
+								<div class="form-check">
+									<input type="checkbox" class="form-check-input" id="login-remember" name="remember"><label for="remember" class="form-check-label">remember me</label><br>
+									<input type="checkbox" class="form-check-input" id="login-maintain-session" name="maintain_session"><label for="maintain_session" class="form-check-label">stay logged in on other devices</label>
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-light float-right" data-dismiss="modal">nevermind</button>
+							<button type="button" class="btn btn-light" id="sign-up">sign up</button>
+							<button type="button" class="btn btn-primary" id="login-submit">log in</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="signup-modal" tabindex="-1" role="dialog" aria-labelledby="login-label" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header text-center">
+							<h2 class="modal-title w-100 font-weight-bold">sign up</h4>
+						</div>
+						<div class="modal-body">
+							<form>
+								<div class="form-group">
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text"><i class="fa fa-user"></i></span>
+										</div>
+										<input type="text" class="form-control" id="signup-username" placeholder="username" name="username">
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text"><i class="fa fa-unlock"></i></span>
+										</div>
+										<input type="password" class="form-control" id="signup-password" placeholder="password" name="password">
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text"><i class="fa fa-lock"></i></span>
+										</div>
+										<input type="password" class="form-control" id="signup-confirm-password" placeholder="password again" name="confirm_password">
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text"><i class="fa fa-envelope"></i></span>
+										</div>
+										<input type="text" class="form-control" id="signup-email" placeholder="email address" name="email">
+									</div>
+								</div>
+								<div class="form-group" id="captcha"></div>
+								<div class="form-group">
+									<textarea class="form-control" id="signup-referral" rows="4" placeholder="where did you hear about rate your music?"></textarea>
+								</div>
+								<div class="form-check">
+									<input type="checkbox" class="form-check-input" id="signup-tos" name="tos"><label for="tos" class="form-check-label">i am over the age of 13 and accept the <a href="https://rateyourmusic.com/tos">terms of service</a></label><br>
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-light float-right" data-dismiss="modal">nevermind</button>
+							<button type="button" class="btn btn-light" id="login-submit">log in</button>
+							<button type="button" class="btn btn-primary" id="sign-up">sign up</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		`)
 	);
+
+	$("button#login-submit").click(() => {
+		console.log("o yea");
+	});
+	$("button#sign-up").click(() => {
+		$("div#login-modal").modal("hide");
+		$("div#signup-modal").modal("show");
+	});
 
 	if (logged_in) {
 		submenu.addClass("sticky-top").css("float", "right");
@@ -185,14 +294,23 @@ if ($("html").hasClass("captcha")) {
 		});
 	}
 
-	$("div#navbar-main").append(make_navbar({
-		"charts": "https://rateyourmusic.com/charts/top/album/all-time",
-		"lists": "https://rateyourmusic.com/lists/",
-		"community": "https://rateyourmusic.com/community/",
-		[username.text() + ""]: `https://rateyourmusic.com${username.attr("href")}`,
-		"subscribe": "https://rateyourmusic.com/subscribe/",
-		[logged_in ? "log out" : ""]: "https://rateyourmusic.com/account/logout"
-	}));
+	$("div#navbar-main ul").append($.parseHTML(`
+		<li class="nav-item"><a class="nav-link" href="https://rateyourmusic.com/charts/top/album/all-time">charts</a></li>
+		<li class="nav-item"><a class="nav-link" href="https://rateyourmusic.com/lists/">lists</a></li>
+		<li class="nav-item"><a class="nav-link" href="https://rateyourmusic.com/community/">community</a></li>
+	`));
+	if (logged_in) {
+		$("div#navbar-main ul").append($.parseHTML(`
+			<li class="nav-item"><a class="nav-link" href="https://rateyourmusic.com${username.attr("href")}">${username.text() + ""}</a></li>
+			<li class="nav-item"><a class="nav-link" href="https://rateyourmusic.com/subscribe">subscribe</a></li>
+			<li class="nav-item"><a class="nav-link" href="https://rateyourmusic.com/logout">log out</a></li>
+		`));
+	} else {
+		$("div#navbar-main ul").append($.parseHTML(`
+			<li class="nav-item"><a class="nav-link" data-toggle="modal" data-target="#login-modal">log in / sign up</a></li>
+			<li class="nav-item"><a class="nav-link" href="https://rateyourmusic.com/subscribe">subscribe</a></li>
+		`));
+	}
 
 	let dropdown_items = {
 		"music": false,
