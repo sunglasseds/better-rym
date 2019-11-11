@@ -57,7 +57,7 @@ div.colheader {
 }
 
 button.colbtn {
-	width: 50%;
+	width: 100%;
 	border-radius: 0;
 	display: table-cell;
 }
@@ -119,4 +119,9 @@ div#newreleases a {
 div#newreleases div.sep {
 	height: 0.5rem;
 	background-color: #fff;
+}
+
+div.reviews#container img {
+	width: 300px;
+	height: auto;
 }

@@ -73,6 +73,7 @@ function make_base() {
 			submenu.addClass("closed");
 		}
 		$("body div.sticky-top").append(submenu);
+		console.log($("div.submenu > a:nth-child(1)").html());
 	}
 
 	$("div#navbar-main").append(make_navbar({
