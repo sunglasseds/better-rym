@@ -131,10 +131,8 @@ a.headerbutton img {
 }
 
 a#forgot-password {
-	padding: 0.25rem 0.75rem;
 	font-size: 0.75rem;
 	width: 100%;
-	font-weight: 700;
 }
 
 div.form-check label {
