@@ -29,7 +29,7 @@
 			"matches": ["*://rateyourmusic.com/"],
 			"css": ["./home/home.css"],
 			"js": [
-				"./home/boobermemes.js", "./home/front_review.js", "./home/header.js", "./home/front_cols.js",
+				"./home/boobermemes.js", "./home/frontreview.js", "./home/header.js", "./home/frontcols.js",
 				"./home/main.js"
 			],
 			"run_at": "document_end",
