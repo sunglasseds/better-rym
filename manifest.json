@@ -3,29 +3,35 @@
 	"version": "0.0",
 	"description": "rym theming",
 	"background": {
-		"scripts": ["./script/nocache.js", "./dep/jquery.js"],
+		"scripts": ["./dep/nocache.js", "./dep/jquery.js"],
 		"persistent": true
 	},
 	"content_scripts": [
 		{
 			"matches": ["*://rateyourmusic.com/*"],
-			"css": ["./dep/bootstrap.css", "./style/hide.css"],
+			"css": ["./dep/bootstrap.css", "./dep/hide.css"],
 			"js": ["./dep/jquery.js", "./dep/popper.js", "./dep/bootstrap.js", "./dep/cookie.js"],
 			"run_at": "document_start",
 			"all_frames": true
 		},
 
 		{
-			"matches": ["*://rateyourmusic.com/*"],
-			"css": ["./style/base.css"],
+			"matches": ["*://rateyourmusic.com/"],
+			"css": ["./base/base.css"],
+			"js": [
+				"./base/notif.js", "./base/msg.js", "./base/search.js", "./base/navbar.js", "./base/login.js", "./base/base.js",
+			],
 			"run_at": "document_end",
 			"all_frames": true
 		},
 
 		{
 			"matches": ["*://rateyourmusic.com/"],
-			"css": ["./style/home.css"],
-			"js": ["./script/home.js"],
+			"css": ["./home/home.css"],
+			"js": [
+				"./home/boobermemes.js", "./home/front_review.js", "./home/header.js", "./home/front_cols.js",
+				"./home/main.js"
+			],
 			"run_at": "document_end",
 			"all_frames": true
 		}
