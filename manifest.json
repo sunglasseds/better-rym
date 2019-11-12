@@ -19,7 +19,7 @@
 			"matches": ["*://rateyourmusic.com/"],
 			"css": ["./base/base.css"],
 			"js": [
-				"./base/notif.js", "./base/msg.js", "./base/search.js", "./base/navbar.js", "./base/login.js", "./base/base.js",
+				"./base/notif.js", "./base/msg.js", "./base/search.js", "./base/navbar.js", "./base/login.js", "./base/base.js"
 			],
 			"run_at": "document_end",
 			"all_frames": true

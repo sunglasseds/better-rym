@@ -6,9 +6,10 @@ let _reviews = $("#content > div.row > div:nth-child(1) > div.bubble_content").h
 let _newreleases = $(`#content table.mbgen tr[id^="newrelease"]`).first().parent().children();
 
 init(() => {
+	console.log("home");
 	make_navbar(_logged_in, _username, _submenu, _bx);
 	make_login();
 
-	make_header(_logged_in, _reviews, _newreleases);
-	make_front_cols(_logged_in);
+	make_header(_logged_in);
+	make_front_cols(_logged_in, _reviews, _newreleases);
 });
