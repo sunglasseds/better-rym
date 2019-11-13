@@ -45,8 +45,12 @@ function make_navbar(logged_in, username, submenu, bx) {
 			</ul>
 		`));
 
-		$(`#notifications-link[yea="yea"]`).click(load_notifications());
-		$(`#messages-link[yea="yea"]`).click(load_messages());
+		$(`#notifications-link[yea="yea"]`).click(function() {
+			load_notifications(this);
+		});
+		$(`#messages-link[yea="yea"]`).click(function() {
+			load_messages(this);
+		});
 	}
 
 	$("div#navbar-main ul").append($.parseHTML(`
@@ -58,7 +62,7 @@ function make_navbar(logged_in, username, submenu, bx) {
 		$("div#navbar-main ul").append($.parseHTML(`
 			<li class="nav-item"><a class="nav-link" href="https://rateyourmusic.com${username.attr("href")}">${username.text() + ""}</a></li>
 			<li class="nav-item"><a class="nav-link" href="https://rateyourmusic.com/subscribe">subscribe</a></li>
-			<li class="nav-item"><a class="nav-link" href="https://rateyourmusic.com/logout">log out</a></li>
+			<li class="nav-item"><a class="nav-link" href="https://rateyourmusic.com/account/logout">log out</a></li>
 		`));
 	} else {
 		$("div#navbar-main ul").append($.parseHTML(`

@@ -16,7 +16,7 @@
 		},
 
 		{
-			"matches": ["*://rateyourmusic.com/"],
+			"matches": ["*://rateyourmusic.com/*"],
 			"css": ["./base/base.css"],
 			"js": [
 				"./base/notif.js", "./base/msg.js", "./base/search.js", "./base/navbar.js", "./base/login.js", "./base/base.js"
@@ -26,7 +26,7 @@
 		},
 
 		{
-			"matches": ["*://rateyourmusic.com/"],
+			"matches": ["*://rateyourmusic.com/", "*://rateyourmusic.com/?login_success"],
 			"css": ["./home/home.css"],
 			"js": [
 				"./home/boobermemes.js", "./home/frontreview.js", "./home/header.js", "./home/frontcols.js",

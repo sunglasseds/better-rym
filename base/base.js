@@ -1,7 +1,8 @@
-function init(title, _f) {
+function init(_f, title=$("title").text()) {
 	if ($("html").hasClass("captcha")) {
 		$("body").css("display", "block", "important");
 	} else {
+		let title = $("title").text();
 		$("html").html(`
 			<head></head>
 			<body style="display: block!important"></body>

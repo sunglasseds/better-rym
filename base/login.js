@@ -82,13 +82,13 @@ function make_login() {
 										<input type="text" class="form-control" id="signup-email" placeholder="email address" name="email">
 									</div>
 								</div>
-								<div class="form-group" id="captcha"></div>
 								<div class="form-group">
 									<textarea class="form-control" id="signup-referral" rows="4" placeholder="where did you hear about rate your music?"></textarea>
 								</div>
 								<div class="form-check">
 									<input type="checkbox" class="form-check-input" id="signup-tos" name="tos"><label for="tos" class="form-check-label">i am over the age of 13 and accept the <a href="https://rateyourmusic.com/tos">terms of service</a></label><br>
-								</div>
+								</div><br>
+								<div class="form-group g-recaptcha" id="captcha">captcha loading</div>
 							</form>
 						</div>
 						<div class="modal-footer">
@@ -102,8 +102,30 @@ function make_login() {
 		`)
 	);
 
+	function _loginSuccessCallback() {
+        window.location = '/?login_success'
+    }
+
+    function _loginFailureCallback(error) {
+        $('#error').html(error).fadeIn(200);
+        $('#login_submit')[0].disabled = false;
+    }
+
+    function _loginTimeout() {
+        $('#login_submit')[0].disabled = false;
+    }
+
 	$("button#login-submit").click(() => {
-		console.log("log in");
+		rym.request.post("Login", {
+			user: $("input#login-username").val(),
+			password: $("input#login-password").val(),
+			remember: $("input#login-remember").is(":checked"),
+			maintain_session: $("input#login-maintain-session").is(":checked")
+		}, null, "script");
+		$("button#login-submit")[0].disabled = true;
+		setTimeout("_loginTimeout()", 5000);
+		$("#login-error").hide();
+	}
 	});
 	$("button#signup-submit").click(() => {
 		console.log("sign up");
@@ -112,10 +134,17 @@ function make_login() {
 	$("button#sign-up").click(() => {
 		$("div#login-modal").modal("hide");
 		$("div#signup-modal").modal("show");
+
 	});
 
 	$("button#log-in").click(() => {
 		$("div#signup-modal").modal("hide");
 		$("div#login-modal").modal("show");
+	});
+
+	$.get("https://rateyourmusic.com/account/signup", function(data) {
+		let pg = $("<div/>").html(data);
+		$("div.form-group#captcha").attr("data-sitekey", pg.find("div.g-recaptcha").attr("data-sitekey"));
+		$("div#signup-modal div.form-group#captcha").after(`<script src='https://www.google.com/recaptcha/api.js'></script>`);
 	});
 }

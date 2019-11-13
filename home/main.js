@@ -6,7 +6,6 @@ let _reviews = $("#content > div.row > div:nth-child(1) > div.bubble_content").h
 let _newreleases = $(`#content table.mbgen tr[id^="newrelease"]`).first().parent().children();
 
 init(() => {
-	console.log("home");
 	make_navbar(_logged_in, _username, _submenu, _bx);
 	make_login();
 
