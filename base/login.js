@@ -1,4 +1,22 @@
 function make_login() {
+	$("head").append(
+		$.parseHTML(`
+			<script>
+				function _loginSuccessCallback() {
+			        window.location = '/?login_success';
+			    }
+
+			    function _loginFailureCallback(error) {
+			        $('#error').html(error).fadeIn(200);
+			        $('#login_submit')[0].disabled = false;
+			    }
+
+			    function _loginTimeout() {
+			        $('#login_submit')[0].disabled = false;
+			    }
+			</script>
+		`)
+	);
 	$("body").append(
 		$.parseHTML(`
 			<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="login-label" aria-hidden="true">
@@ -102,19 +120,7 @@ function make_login() {
 		`)
 	);
 
-	function _loginSuccessCallback() {
-        window.location = '/?login_success'
-    }
-
-    function _loginFailureCallback(error) {
-        $('#error').html(error).fadeIn(200);
-        $('#login_submit')[0].disabled = false;
-    }
-
-    function _loginTimeout() {
-        $('#login_submit')[0].disabled = false;
-    }
-
+	// i will piss myself if this works. i am literally just fucking with the site's javascript. i have no fucking clue why this works
 	$("button#login-submit").click(() => {
 		rym.request.post("Login", {
 			user: $("input#login-username").val(),
@@ -122,10 +128,10 @@ function make_login() {
 			remember: $("input#login-remember").is(":checked"),
 			maintain_session: $("input#login-maintain-session").is(":checked")
 		}, null, "script");
+		// figure out if this is Bootstrap
 		$("button#login-submit")[0].disabled = true;
 		setTimeout("_loginTimeout()", 5000);
 		$("#login-error").hide();
-	}
 	});
 	$("button#signup-submit").click(() => {
 		console.log("sign up");
@@ -134,9 +140,7 @@ function make_login() {
 	$("button#sign-up").click(() => {
 		$("div#login-modal").modal("hide");
 		$("div#signup-modal").modal("show");
-
 	});
-
 	$("button#log-in").click(() => {
 		$("div#signup-modal").modal("hide");
 		$("div#login-modal").modal("show");
