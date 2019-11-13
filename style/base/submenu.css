@@ -1,0 +1,16 @@
+div.submenu {
+	float: right;
+	margin-right: 1rem;
+	padding: 0.1875rem;
+	font-size: 12px;
+}
+
+div.submenu > a {
+	text-decoration: none;
+	color: inherit;
+	padding: 0.125rem;
+}
+
+div.submenu_ext.closed {
+	max-height: 0;
+}

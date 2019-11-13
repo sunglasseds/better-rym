@@ -1,0 +1,39 @@
+div#frontcontentheader {
+	max-height: 30rem;
+	min-height: 30rem;
+	display: flex;
+}
+
+div#frontcontentheader a {
+	text-decoration: none;
+	color: #212529;
+}
+
+div#frontcontentheader div.container {
+	height: 100%;
+}
+
+div#frontcontentheader div.container div.row {
+	text-align: center;
+	height: 100%;
+}
+
+div#frontcontentheader div.container div.row div.col-md-6 {
+	display: inline-block;
+	text-align: left;
+}
+
+div#frontcontentheader img {
+	display: inline-block;
+	height: 125%;
+	width: auto;
+}
+
+div#welcome {
+	margin-top: 5rem;
+	font-size: 1.25rem;
+}
+
+div#welcome h1 {
+	font-size: 3.25rem;
+}

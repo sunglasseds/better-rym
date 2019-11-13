@@ -1,0 +1,21 @@
+div.newrelease > tr {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+div.newrelease {
+	font-size: 0.75rem;
+}
+
+.delayloadimg {
+	padding: .5rem;
+}
+
+div#newreleases a {
+	color: #01a;
+}
+
+div#newreleases div.sep {
+	height: 0.5rem;
+	background-color: #fff;
+}

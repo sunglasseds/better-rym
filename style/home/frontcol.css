@@ -1,0 +1,44 @@
+/* a.headerbutton {
+	font-weight: normal!important;
+}
+
+a.headerbutton img {
+	display: none;
+} */
+
+div.frontcol {
+	display: none;
+	margin-bottom: 10rem;
+}
+
+div.frontcol.active {
+	display: block;
+}
+
+div.container:has(div.colheader) {
+	margin-right: 0;
+}
+
+div.colheader {
+	width: 100%;
+	display: table;
+}
+
+button.colbtn {
+	width: 100%;
+	border-radius: 0;
+	display: table-cell;
+}
+
+div.frontcol {
+	background-color: #f0f1f2;
+}
+
+div.frontreviewhead {
+	background-color: #e9ecef;
+	padding: 1.5rem;
+}
+
+div.frontreviewhead a {
+	color: #01a;
+}

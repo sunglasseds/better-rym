@@ -17,9 +17,9 @@
 
 		{
 			"matches": ["*://rateyourmusic.com/*"],
-			"css": ["./base/base.css"],
+			"css": ["./style/base/base.css", "./style/base/navbar.css", "./style/base/search.css", "./style/base/submenu.css", "./style/base/frontcol.css", "./style/base/login.css", "./style/base/iconbar.css"],
 			"js": [
-				"./base/notif.js", "./base/msg.js", "./base/search.js", "./base/navbar.js", "./base/login.js", "./base/base.js"
+				"./script/base/notif.js", "./script/base/msg.js", "./script/base/search.js", "./script/base/navbar.js", "./script/base/login.js", "./script/base/base.js"
 			],
 			"run_at": "document_end",
 			"all_frames": true
@@ -27,10 +27,10 @@
 
 		{
 			"matches": ["*://rateyourmusic.com/", "*://rateyourmusic.com/?login_success"],
-			"css": ["./home/home.css"],
+			"css": ["./style/home/header.css", "./style/home/frontcol.css", "./style/home/review.css", "./style/home/newrelease.css"],
 			"js": [
-				"./home/boobermemes.js", "./home/frontreview.js", "./home/header.js", "./home/frontcols.js",
-				"./home/main.js"
+				"./script/home/boobermemes.js", "./script/home/frontreview.js", "./script/home/header.js", "./script/home/frontcols.js",
+				"./script/home/main.js"
 			],
 			"run_at": "document_end",
 			"all_frames": true

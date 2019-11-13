@@ -1,0 +1,28 @@
+div.frontreview {
+	display: table;
+}
+
+div.frontreviewbody {
+	padding: 1.5rem;
+	font-size: 14px;
+}
+
+div.reviewheadart {
+	text-align: right;
+}
+
+div.reviewheadart img {
+	display: inline-block;
+}
+
+div.bottom-aligner {
+	display: inline-block;
+	height: 30%;
+	vertical-align: bottom;
+	width: 0px;
+}
+
+div.reviews#container img {
+	width: 300px;
+	height: auto;
+}

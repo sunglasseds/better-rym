@@ -1,0 +1,11 @@
+.navbar {
+	padding: 0.25rem 1rem;
+}
+
+.navbar-nav {
+	flex-direction: row;
+}
+
+.navbar-right {
+	justify-content: flex-end;
+}
