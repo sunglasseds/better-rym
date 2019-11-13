@@ -50,40 +50,40 @@ function RYM() {
 	this.session = new RYMSession;
 	this.request = new RYMRequest;
 	this.doModalError = function(e, t, n){
-		alert(t + ": " + e)};
-		this.doSpinner = function(e, t){
-			t = t == null ? "s" : t;
-			if (t == "s" || t == "m" || t == "l"){
-				t = '<img src="/images/spinner_' + t + '.gif">'
-			}
-			$("#" + e).html(t);
-		};
-		this.search = function(e, t, n, r, i){
-			if (r == null) {
-				r = "searchresults";
-			}
-			this.doSpinner(r, '<div style="height:400px;text-align:center;padding-top:200px;"><img src="/images/spinner_m.gif><br><em>Searching...</em></div>');
-			this.request.post("Search", {
-				searchterm:e,
-				type:t,
-				page:n
-			}, function(e) {
-				$("#"+r).html(e)
-			}, "html")
+		alert(t + ": " + e)
+	};
+	this.doSpinner = function(e, t){
+		t = t == null ? "s" : t;
+		if (t == "s" || t == "m" || t == "l"){
+			t = '<img src="/images/spinner_' + t + '.gif">'
 		}
+		$("#" + e).html(t);
+	};
+	this.search = function(e, t, n, r, i){
+		if (r == null) {
+			r = "searchresults";
+		}
+		this.doSpinner(r, '<div style="height:400px;text-align:center;padding-top:200px;"><img src="/mages/spinner_m.gif><br><em>Searching...</em></div>');
+		this.request.post("Search", {
+			searchterm: e,
+			type: t,
+			page: n
+		}, function(e) {
+			$("#"+r).html(e)
+		}, "html")
 	}
-	rym = new RYM;
-	$(function() {
-		$("body").ajaxError(function(e, t, n, r){
-			switch(t.status) {
-			case 404:
-				rym.doModalError("File not found.","404 Error: ");
-				break;
-			case 500:
-				rym.doModalError(t.responseText, "Error: ");
-				break;
-				default: rym.doModalError("An unknown error occured.","Error: ")
-			}
-		})
-	});
 }
+rym = new RYM;
+$(function() {
+	$("body").ajaxError(function(e, t, n, r){
+		switch(t.status) {
+		case 404:
+			rym.doModalError("File not found.","404 Error: ");
+			break;
+		case 500:
+			rym.doModalError(t.responseText, "Error: ");
+			break;
+			default: rym.doModalError("An unknown error occured.","Error: ")
+		}
+	})
+});
