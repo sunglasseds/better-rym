@@ -18,7 +18,6 @@ function make_navbar(logged_in, username, submenu, bx) {
 		</div>`)
 	);
 	if (logged_in) {
-		submenu.addClass("sticky-top").css("float", "right");
 		if (Cookies.get("submenu_ext") == "nah") {
 			submenu.addClass("closed");
 		}
@@ -63,7 +62,17 @@ function make_navbar(logged_in, username, submenu, bx) {
 			<li class="nav-item"><a class="nav-link" href="https://rateyourmusic.com${username.attr("href")}">${username.text() + ""}</a></li>
 			<li class="nav-item"><a class="nav-link" href="https://rateyourmusic.com/subscribe">subscribe</a></li>
 			<li class="nav-item"><a class="nav-link" href="https://rateyourmusic.com/account/logout">log out</a></li>
+			<li class="nav-item"><a class="nav-link" id="submenu-close">...</a></li>
 		`));
+		$("a#submenu-close").click(function() {
+			if (!Cookies.get("submenu_ext") || Cookies.get("submenu_ext") == "nah") {
+				Cookies.set("submenu_ext", "yea", {expires: Number.MAX_SAFE_INTEGER});
+				$(".submenu_ext").removeClass("closed");
+			} else if (Cookies.get("submenu_ext") == "yea") {
+				Cookies.set("submenu_ext", "nah", {expires: Number.MAX_SAFE_INTEGER});
+				$(".submenu_ext").addClass("closed");
+			}
+		});
 	} else {
 		$("div#navbar-main ul").append($.parseHTML(`
 			<li class="nav-item"><a class="nav-link" data-toggle="modal" data-target="#login-modal">log in / sign up</a></li>

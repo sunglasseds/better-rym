@@ -2,6 +2,7 @@ div#frontcontentheader {
 	max-height: 30rem;
 	min-height: 30rem;
 	display: flex;
+	border-radius: 0;
 }
 
 div#frontcontentheader a {

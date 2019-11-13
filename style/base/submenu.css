@@ -1,3 +1,17 @@
+div.submenu_ext {
+	overflow-y: hidden;
+	max-height: 1.5rem;
+	transition-property: all;
+	transition-duration: .04s; /* what a bitch */
+	transition-timing-function: cubic-bezier(0, 1, 1, 1);
+
+	background-color: #f8f9fa;
+	color: #89838c;
+	width: 100%;
+	border-top: 1px solid #e9ecef;
+	z-index: -10;
+}
+
 div.submenu {
 	float: right;
 	margin-right: 1rem;

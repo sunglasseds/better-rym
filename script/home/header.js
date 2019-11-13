@@ -11,7 +11,7 @@ function make_header(logged_in) {
 							<h1>welcome to rym</h1>
 							<span>${boobermemes()}</span>
 							<br><br>
-							<button type="button" class="btn btn-light">${logged_in ? `<a href="https://rateyourmusic.com/account/login">create an account</a>` : `<a href="https://rateyourmusic.com/misc/random">wow look go listen to this album pretty cool</a>`}</button>
+							<button type="button" class="btn btn-light">${logged_in ? `<a href="https://rateyourmusic.com/misc/random">wow look go listen to this album pretty cool</a>` : `<a href="https://rateyourmusic.com/account/login">create an account</a>`}</button>
 						</div>
 					</div>
 				</div>

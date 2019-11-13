@@ -57,7 +57,7 @@ function load_notifications(_this) {
 				$("<li/>").html("<hr>")
 			);
 		});
-		
+
 		$("#notifications ul.dropdown-menu hr:last").remove();
 	});
 }

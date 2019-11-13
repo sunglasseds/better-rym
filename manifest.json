@@ -17,9 +17,9 @@
 
 		{
 			"matches": ["*://rateyourmusic.com/*"],
-			"css": ["./style/base/base.css", "./style/base/navbar.css", "./style/base/search.css", "./style/base/submenu.css", "./style/base/frontcol.css", "./style/base/login.css", "./style/base/iconbar.css"],
+			"css": ["./style/base/base.css", "./style/base/navbar.css", "./style/base/search.css", "./style/base/submenu.css", "./style/base/login.css", "./style/base/iconbar.css"],
 			"js": [
-				"./script/base/notif.js", "./script/base/msg.js", "./script/base/search.js", "./script/base/navbar.js", "./script/base/login.js", "./script/base/base.js"
+				"./script/base/rym.js", "./script/base/notif.js", "./script/base/msg.js", "./script/base/search.js", "./script/base/navbar.js", "./script/base/login.js", "./script/base/base.js"
 			],
 			"run_at": "document_end",
 			"all_frames": true

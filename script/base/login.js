@@ -1,22 +1,20 @@
 function make_login() {
-	$("head").append(
-		$.parseHTML(`
-			<script>
-				function _loginSuccessCallback() {
-			        window.location = '/?login_success';
-			    }
+	let s = document.createElement("script");
+	s.text = `
+		function _loginSuccessCallback() {
+			window.location = '/?login_success';
+		}
 
-			    function _loginFailureCallback(error) {
-			        $('#error').html(error).fadeIn(200);
-			        $('#login_submit')[0].disabled = false;
-			    }
+		function _loginFailureCallback(error) {
+			$('#error').html(error).fadeIn(200);
+			$('#login_submit')[0].disabled = false;
+		}
 
-			    function _loginTimeout() {
-			        $('#login_submit')[0].disabled = false;
-			    }
-			</script>
-		`)
-	);
+		function _loginTimeout() {
+			$('#login_submit')[0].disabled = false;
+		}
+	`;
+	document.head.appendChild(s);
 	$("body").append(
 		$.parseHTML(`
 			<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="login-label" aria-hidden="true">
