@@ -1,5 +1,5 @@
 # better-rym
-fix-rym but now its a chrome extension
+fix-rym but now its a chrome extension that exists to make feel less like the year 2004
 
 go on the website, make sure the extension is enabled, and-
 
