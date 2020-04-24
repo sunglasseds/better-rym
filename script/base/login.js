@@ -132,7 +132,7 @@ function make_login() {
 		$("#login-error").hide();
 	});
 	$("button#signup-submit").click(() => {
-		console.log("sign up");
+		$.post("https://rateyourmusic.com/account/signup-2", $("div#signup-modal").serialize(), function(d){alert(d);});
 	});
 
 	$("button#sign-up").click(() => {
